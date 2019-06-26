@@ -1,0 +1,91 @@
+1. [20] Assume that you’re given the task of optimizing graphics software that operates in the CMYK (Cyan, Magenta, Yellow, Black) color space. Specifically, you need to determine the efficiency of the following algorithm on a machine with a 2048-byte direct-mapped data cache with 32-byte blocks. You are given the following definitions:
+
+struct point_color {
+
+         int c;
+
+         int m;
+
+         int y;
+
+         int k;
+
+};
+
+struct point_color square[16][16];
+
+ 
+
+Assume the following:
+
+          • sizeof(int) == 4.
+
+          • square begins at memory address 0.
+
+          • The cache is initially empty.
+
+          • The only memory accesses are to the entries of the array square. Variables i and j are stored in registers.
+
+ 
+
+ 
+
+Determine the cache performance of the following code:
+
+ 
+
+for (i = 0; i < 16; i++)  {
+
+         for (j = 0; j < 16; j++) {
+
+                  square[i][j].c = 1;
+
+                  square[i][j].m = 0;
+
+                  square[i][j].y = 0;
+
+                  square[i][j].k = 0;
+
+         }
+
+ }
+
+ 
+
+A. What is the total number of memory writes? It may help to think in terms of movl instructions.
+
+ 
+
+          16 from the first for loop
+
+          16 from the second for loop
+
+          16*16 = 256 * 4 = 1024 memory writes
+
+ 
+
+B. What is the total number of memory writes that miss in the cache?
+
+        
+
+         Total miss = total access / block size
+
+                          =  1024 / 32
+
+                          =  32
+
+         Sizeof(int) is 4 byte so 32 x 4 = 128 x 4 =
+
+         512 bytes is the number of write miss in cache
+
+ 
+
+C. What is the miss rate?
+
+        
+
+         Miss rate = 512/1024
+
+                        = 0.5
+
+         The miss rate is 50%

@@ -1,0 +1,21 @@
+//problem 5-3
+
+
+3.[25] In our example Y86 programs, such as the Sum function shown in Figure 4.6, we 
+encounter many cases (e.g., lines 12 and 13 and lines 14 and 15) in which we want to add a 
+constant value to a register. This requires first using an irmovl instruction to set a register to the 
+constant, and then an addl instruction to add this value to the destination register. Suppose we 
+want to add a new instruction iaddl with the following format:
+
+.......
+
+This instruction adds the constant value V to register rB. Describe the computations performed 
+to implement this instruction. Use the computations for irmovl and OPl (Figure 4.18) as a guide.Write your answer
+in your solutions document.
+
+
+
+
+ANSWER:
+
+The Sum() function will compute the sum of an int array. This Sum() produces the same results just as if we were to write it in regular C code or IA32, however the instructions the computer are reading are different because this code is in y86. The words that start with a period ae assembler directive which allows the assembler to adjust the addreses at which its generating code. Line 2 is where the assembler should start generating code at adress 0. The next two instructions initialize the stack and frame pointers. The label Stack is declared at the end of the program on line 47 and adresses 0x100 usingg a.pos at line 46. Lines 9-13 will declare a array of four words with the values 0xd,0xc0, 0xb00, and 0xa000. Then lines 15-24 "main" which calls Sum() on the array then eventually will hault
